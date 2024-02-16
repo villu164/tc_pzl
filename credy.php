@@ -1,6 +1,11 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 require_once 'includes/ApiRequest.php';
+require_once 'includes/TimeService.php';
+
+$timeService = new TimeService();
+# Make sure the server time is sufficiently correct
+$timeService->checkTimeDifference();
 
 $data = [
     'first_name' => 'Villu',
