@@ -1,3 +1,15 @@
+# Usage
+```sh
+php credy.php
+```
+
+# Docker
+```sh
+docker build -t credy .
+docker run -it --rm -v $(pwd):/app credy php credy.php
+```
+
+# Log
 * Given that the job description is available at https://www.cvkeskus.ee/php-arendaja-tartus-traffic-control-ou-894619, then I don't have to be worry about the privacy and secrecy of this puzzle contents.
 * Next I crafted a simple starting prompt for the LLM
 ```php
@@ -111,4 +123,9 @@ echo -n '1708078976credy' | sha1sum
 ```
 
 * OK, so let recap current status:
-* have the JSONx format
+  * JSONx format: check
+  * valid hash: check
+  * sending logic: check
+  * OOP: check
+  * accidentally fired payload to target before ready: check
+
