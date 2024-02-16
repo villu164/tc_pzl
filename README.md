@@ -14,12 +14,63 @@ write a php script, that solves this puzzle Send a POST request to https://cv.mi
 
 * Next I generated a starting boilerplate with public LLM Phind.com and then copy-pasted the offered solution
 * Next I asked about the ambiguities in the puzzle, to make sure, I didn't miss anything
-*
+* So, there seems to be a rather large ambiguity in the "JSONx" format. Since the reference is not made to any particular source document, then it might mean JSONx (JSON in XML, https://www.jsonx.org/#/), but it could also mean JSONX (JSON with Extensions, https://json-next.github.io/) both good options, lets poke at the API endpoint, to know which one we have. Since one version is pretty much XML and the other is a superset of JSON, lets try to get some validation errors.
+* Found this page, https://github.com/danharper/JSONx-for-Laravel/blob/master/README.md and tried the sample payload from there
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<json:object xmlns:json="http://www.ibm.com/xmlns/prod/2009/jsonx" xsi:schemaLocation="http://www.datapower.com/schemas/json jsonx.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <json:array name="fruits">
+    <json:string>apple</json:string>
+    <json:string>banana</json:string>
+    <json:string>pear</json:string>
+  </json:array>
+  <json:boolean name="something">true</json:boolean>
+</json:object>
+```
+yields
 
+```json
+[
+    {
+        "field": "first_name",
+        "message": "First Name cannot be blank."
+    },
+    {
+        "field": "last_name",
+        "message": "Last Name cannot be blank."
+    },
+    {
+        "field": "email",
+        "message": "Email cannot be blank."
+    },
+    {
+        "field": "bio",
+        "message": "Bio cannot be blank."
+    },
+    {
+        "field": "technologies",
+        "message": "Technologies cannot be blank."
+    },
+    {
+        "field": "timestamp",
+        "message": "Timestamp cannot be blank."
+    },
+    {
+        "field": "signature",
+        "message": "Signature cannot be blank."
+    },
+    {
+        "field": "vcs_uri",
+        "message": "Vcs Uri cannot be blank."
+    }
+]
+```
 
-
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-RUN php -r "if (hash_file('sha384', 'composer-setup.php') === 'edb40769019ccf227279e3bdd1f5b2e9950eb000c3233ee85148944e555d97be3ea4f40c3c2fe73b22f875385f6a5155') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-RUN php composer-setup.php
-RUN mv composer.phar /root/
-RUN php -r "unlink('composer-setup.php');"
+* Which means, that JSONx responds to the XML version of the JSON
+* And this confirms, that the endpoint accepts our variables.
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<json:object xmlns:json="http://www.ibm.com/xmlns/prod/2009/jsonx" xsi:schemaLocation="http://www.datapower.com/schemas/json jsonx.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <json:string name="first_name">Villu</json:string>
+</json:object>
+```

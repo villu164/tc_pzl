@@ -1,0 +1,60 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "081fa920453a4e56ff6c579c7f9db103",
+    "packages": [
+        {
+            "name": "danharper/jsonx",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/danharper/JSONx.git",
+                "reference": "551ab64f6f4a9d19c516cc7c62ac449190c5a0e3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/danharper/JSONx/zipball/551ab64f6f4a9d19c516cc7c62ac449190c5a0e3",
+                "reference": "551ab64f6f4a9d19c516cc7c62ac449190c5a0e3",
+                "shasum": ""
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "danharper\\JSONx\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dan Harper",
+                    "email": "hello@dans.email"
+                }
+            ],
+            "description": "JSONx is an IBM standard format to represent JSON as XML https://twitter.com/danharper7/status/514822464673951744",
+            "support": {
+                "issues": "https://github.com/danharper/JSONx/issues",
+                "source": "https://github.com/danharper/JSONx/tree/master"
+            },
+            "time": "2015-11-22T16:07:46+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.6.0"
+}

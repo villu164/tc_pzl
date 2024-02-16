@@ -16,7 +16,9 @@ RUN apt install -y nano
 RUN apt-get update && apt-get install -y cron
 RUN alias composer=/root/composer.phar
 COPY php_config.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-
+RUN apt install git -y
+RUN cp /root/composer.phar /usr/bin/composer
+RUN composer require danharper/jsonx
 
 # docker build -t credy .
 # echo "alias credy_bash='docker run -it --rm -v $(pwd):/app --entrypoint /bin/bash credy'"
