@@ -1,11 +1,13 @@
 # Usage
 ```sh
+composer install
 php credy.php
 ```
 
 # Docker
 ```sh
 docker build -t credy .
+docker run -it --rm -v $(pwd):/app credy composer install
 docker run -it --rm -v $(pwd):/app credy php credy.php
 ```
 
