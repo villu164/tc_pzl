@@ -74,3 +74,41 @@ yields
   <json:string name="first_name">Villu</json:string>
 </json:object>
 ```
+
+* netcat the query locally, to see the output
+```sh
+nc -l 8123 # To see what I'm sending
+```
+
+```xml
+POST /miniserver.php HTTP/1.1
+Host: host.docker.internal:8123
+Accept: */*
+Content-Type: application/xml
+Content-Length: 824
+
+<?xml version="1.0" encoding="UTF-8"?>
+<json:object xmlns:json="http://www.ibm.com/xmlns/prod/2009/jsonx" xsi:schemaLocation="http://www.datapower.com/schemas/json jsonx.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <json:string name="first_name">Villu</json:string>
+ <json:string name="last_name">Orav</json:string>
+ <json:string name="email">villu164@gmail.com</json:string>
+ <json:string name="bio">TODO:</json:string>
+ <json:array name="technologies">
+  <json:string>PHP</json:string>
+  <json:string>HTML</json:string>
+  <json:string>Docker</json:string>
+ </json:array>
+ <json:number name="timestamp">1708078976</json:number>
+ <json:string name="signature">d06cff6bc34f2cbe4b6050f3271823a270480b84</json:string>
+ <json:string name="vcs_uri">https://github.com/villu164/tc_pzl</json:string>
+</json:object>
+```
+
+* Just to be on the safe side, re-verify the hashing algo
+```sh
+echo -n '1708078976credy' | sha1sum                                                                              
+# d06cff6bc34f2cbe4b6050f3271823a270480b84  -
+```
+
+* OK, so let recap current status:
+* have the JSONx format
